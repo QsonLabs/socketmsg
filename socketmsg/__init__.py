@@ -5,7 +5,7 @@ format into a message that can be posted to a broker
 import os
 import sys
 
-from . import socket
+from . import sock
 if sys.version_info[0] != 2:
     from . import asyncio
 
