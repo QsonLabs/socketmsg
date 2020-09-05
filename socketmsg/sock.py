@@ -23,7 +23,7 @@ class SockListener(object):
     def recv(self):
         while re.search(self.delimeter, self.buf) is None:
             self.buf += self.socket.recv(4096)
-        [text, self.buf] = re.split('\r?\n', self.buf, 1)
+        [text, self.buf] = re.split(re.delimeter, self.buf, 1)
         return text
 
 
