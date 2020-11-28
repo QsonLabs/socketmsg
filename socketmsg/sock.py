@@ -7,6 +7,7 @@ class SockListener(object):
     def __init__(self, config):
         self.host = config.get('host', 'localhost')
         self.port = config.get('port', None)
+        self.bufsize = config.get('bufsize', 4096)
         self.delimeter = config.get('delimeter', '\r?\n')
         self.connect()
         self.msg = self.recv()
@@ -22,8 +23,8 @@ class SockListener(object):
 
     def recv(self):
         while re.search(self.delimeter, self.buf) is None:
-            self.buf += self.socket.recv(4096)
-        [text, self.buf] = re.split(re.delimeter, self.buf, 1)
+            self.buf += self.socket.recv(self.bufsize)
+        [text, self.buf] = re.split(self.delimeter, self.buf, 1)
         return text
 
 
