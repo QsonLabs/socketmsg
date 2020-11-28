@@ -19,3 +19,11 @@ class TestSocket(object):
     ], scope="class")
     def test__resolve_protocol_handles_tcp(self, protocol):
         assert socket.SOCK_STREAM == sock._resolve_protocol(protocol)
+
+    @pytest.mark.parametrize("protocol", [
+        "udp",
+        "UDP",
+    ], scope="class")
+    def test__resolve_protocol_handles_udp(self, protocol):
+        assert socket.SOCK_DGRAM == sock._resolve_protocol(protocol)
+
